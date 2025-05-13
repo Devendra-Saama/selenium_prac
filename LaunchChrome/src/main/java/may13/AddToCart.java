@@ -13,22 +13,25 @@ public class AddToCart
     public static void main(String[] args)
     {
         WebDriver driver=new ChromeDriver();
-        String[] names={"Cauliflower","Beetroot","Tomato"};
-        List<String>item_name= Arrays.asList(names);
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
-       List<WebElement>items= driver.findElements(By.cssSelector("h4.product-name"));
+        String[] items={"Brocolli","Beetroot","Tomato","Brinjal"};
+        List<String>itemList=Arrays.asList(items);
+        List<WebElement>list=driver.findElements(By.cssSelector("h4.product-name"));
+        int j=0;
+        for(int i=0;i<list.size();i++)
+        {
+            String name=list.get(i).getText();
+            //Brocolli - 1 Kg
+            String []f_name=name.split("-");
+            String final_name=f_name[0].trim();
+            if(itemList.contains(final_name))
+            {
+                j++;
+                driver.findElements(By.xpath("//div[@class='product-action']//button")).get(i).click();
+              if(j==items.length)
+                  break;
+            }
+        }
 
-       for(int i=0;i<items.size();i++)
-       {
-           String test_name=items.get(i).getText();
-           //Tomato - 1 Kg
-           String[] newName=test_name.split("-");
-          String final_name= newName[0].trim();
-          if(item_name.contains(final_name))
-          {
-             driver.findElements(By.xpath("//button[text()='ADD TO CART']")).get(i).click();
-          }
-       }
-       driver.close();
     }
 }
