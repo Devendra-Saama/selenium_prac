@@ -17,7 +17,6 @@ public class GetPassword
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@type='password']")).sendKeys(password);
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        System.out.println("Hello");
     }
 
     public static String getPassword(WebDriver driver) throws InterruptedException {
@@ -29,7 +28,6 @@ public class GetPassword
             //Please use temporary password 'rahulshettyacademy' to Login.
             String [] array=text.split("'");
              String pass= array[1].split("'")[0];
-
              return pass;
 
         }
